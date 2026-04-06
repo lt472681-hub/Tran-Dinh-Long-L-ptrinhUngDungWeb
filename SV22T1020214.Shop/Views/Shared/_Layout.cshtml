@@ -1,0 +1,224 @@
+@{
+    var cart = ApplicationContext.GetSessionData<List<CartItem>>("Cart") ?? new List<CartItem>();
+    int cartCount = cart.Sum(c => c.Quantity);
+    bool isAuthenticated = User.Identity?.IsAuthenticated == true;
+    string customerName = User.Identity?.Name ?? "";
+    string currentController = ViewContext.RouteData.Values["controller"]?.ToString() ?? "";
+    string currentAction = ViewContext.RouteData.Values["action"]?.ToString() ?? "";
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@(ViewData["Title"] != null ? ViewData["Title"] + " - " : "")TDL MOTO</title>
+    <link rel="icon" type="image/svg+xml" href="~/brand/logo-tdl-moto.svg" asp-append-version="true" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body class="has-mobile-nav">
+
+    <div class="site-topbar d-none d-md-block">
+        <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
+            <span><i class="bi bi-telephone-fill me-1"></i> Hotline: <strong>0123.456.789</strong> · 8h–21h</span>
+            <span class="d-flex gap-3">
+                <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                <a href="#" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+                <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+            </span>
+        </div>
+    </div>
+
+    <header class="site-header" id="siteHeader">
+        <div class="container">
+            <div class="site-header__grid">
+                <button class="btn btn-menu site-header__menu d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#shopNavOffcanvas" aria-controls="shopNavOffcanvas" aria-label="Mở menu">
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <a class="site-brand site-header__brand flex-shrink-0" asp-controller="Home" asp-action="Index" title="TDL MOTO — Trang chủ">
+                    <img class="site-brand__logo" src="~/brand/logo-tdl-moto.svg" alt="TDL MOTO — Showroom xe máy" width="280" height="42" asp-append-version="true" />
+                </a>
+
+                <form class="header-search site-header__search d-flex" asp-controller="Product" asp-action="Index" method="get">
+                    <input type="text" name="search" class="form-control" placeholder="Tìm xe máy, hãng, phân khúc…"
+                           value="@Context.Request.Query["search"]" />
+                    <button class="btn btn-search" type="submit" aria-label="Tìm kiếm"><i class="bi bi-search"></i></button>
+                </form>
+
+                <div class="site-header__end d-flex align-items-center gap-2 gap-lg-3 flex-shrink-0 ms-lg-auto">
+                <nav class="header-nav-quick site-header__nav d-none d-lg-flex align-items-center flex-shrink-0" aria-label="Điều hướng chính">
+                    <a class="header-nav-quick__link @(currentController == "Home" && currentAction == "Index" ? "is-active" : "")" asp-controller="Home" asp-action="Index">Trang chủ</a>
+                    <a class="header-nav-quick__link @(currentController == "Product" ? "is-active" : "")" asp-controller="Product" asp-action="Index">Xe có sẵn</a>
+                    <a class="header-nav-quick__link @(currentController == "Home" && currentAction == "Contact" ? "is-active" : "")" asp-controller="Home" asp-action="Contact">Liên hệ</a>
+                    <a class="header-nav-quick__link @(currentController == "Home" && currentAction == "About" ? "is-active" : "")" asp-controller="Home" asp-action="About">Giới thiệu</a>
+                </nav>
+
+                <div class="site-header__actions d-flex align-items-center gap-2 gap-lg-3 flex-shrink-0">
+                    <a class="header-action" asp-controller="Cart" asp-action="Index">
+                        <span style="position:relative">
+                            <i class="bi bi-cart3"></i>
+                            @if (cartCount > 0)
+                            {
+                                <span class="cart-badge">@cartCount</span>
+                            }
+                        </span>
+                        <span class="d-none d-xl-inline">Giỏ</span>
+                    </a>
+
+                    @if (isAuthenticated)
+                    {
+                        <div class="dropdown">
+                            <a class="header-action dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                                <i class="bi bi-person-circle"></i>
+                                <span class="d-none d-xl-inline text-truncate" style="max-width:7rem">@customerName</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
+                                <li><a class="dropdown-item" asp-controller="Account" asp-action="Profile"><i class="bi bi-person me-2"></i>Tài khoản</a></li>
+                                <li><a class="dropdown-item" asp-controller="Order" asp-action="History"><i class="bi bi-bag-check me-2"></i>Đơn hàng</a></li>
+                                <li><a class="dropdown-item" asp-controller="Account" asp-action="ChangePassword"><i class="bi bi-key me-2"></i>Đổi mật khẩu</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item text-danger" asp-controller="Account" asp-action="Logout"><i class="bi bi-box-arrow-right me-2"></i>Đăng xuất</a></li>
+                            </ul>
+                        </div>
+                    }
+                    else
+                    {
+                        <a class="header-action d-none d-lg-inline-flex" asp-controller="Account" asp-action="Login">
+                            <i class="bi bi-person"></i>
+                            <span class="d-none d-xl-inline">Đăng nhập</span>
+                        </a>
+                    }
+                </div>
+                </div>
+            </div>
+
+            <div class="site-header__meta header-trust header-trust--ribbon d-none d-sm-flex justify-content-center align-items-center flex-wrap">
+                <span class="header-trust__item"><i class="bi bi-lightning-charge"></i> PDI &amp; bảo hành động cơ</span>
+                <span class="header-trust__sep" aria-hidden="true">·</span>
+                <span class="header-trust__item"><i class="bi bi-shield-check"></i> Hồ sơ minh bạch · Hỗ trợ trả góp</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="offcanvas offcanvas-start offcanvas-nav" tabindex="-1" id="shopNavOffcanvas" aria-labelledby="shopNavOffcanvasLabel">
+        <div class="offcanvas-header border-bottom border-secondary align-items-center">
+            <div class="d-flex align-items-center gap-2 mb-0" id="shopNavOffcanvasLabel">
+                <img class="site-brand__logo" style="height:36px" src="~/brand/logo-tdl-moto.svg" alt="TDL MOTO" asp-append-version="true" />
+            </div>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Đóng"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="nav flex-column gap-1">
+                <li class="nav-item">
+                    <a class="nav-link rounded-pill px-3 @(currentController == "Home" && currentAction == "Index" ? "active" : "")" asp-controller="Home" asp-action="Index"><i class="bi bi-house-door me-2"></i>Trang chủ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link rounded-pill px-3 @(currentController == "Product" ? "active" : "")" asp-controller="Product" asp-action="Index"><i class="bi bi-speedometer2 me-2"></i>Xe có sẵn</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link rounded-pill px-3 @(currentController == "Home" && currentAction == "Contact" ? "active" : "")" asp-controller="Home" asp-action="Contact"><i class="bi bi-envelope me-2"></i>Liên hệ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link rounded-pill px-3 @(currentController == "Home" && currentAction == "About" ? "active" : "")" asp-controller="Home" asp-action="About"><i class="bi bi-info-circle me-2"></i>Giới thiệu</a>
+                </li>
+                @if (!isAuthenticated)
+                {
+                    <li class="nav-item pt-2 border-top border-secondary mt-2">
+                        <a class="nav-link rounded-pill px-3" asp-controller="Account" asp-action="Login"><i class="bi bi-box-arrow-in-right me-2"></i>Đăng nhập</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+
+    <main class="site-main py-4">
+        @RenderBody()
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h6 class="font-serif text-brand mb-2">TDL MOTO</h6>
+                    <p class="small text-muted">Showroom xe máy — tuyển chọn xe đã kiểm định, hỗ trợ trả góp và giao xe toàn quốc. Đồng hành từ xem xe đến bàn giao.</p>
+                    <div class="d-flex gap-3 footer-social">
+                        <a href="#" aria-label="Facebook"><i class="bi bi-facebook fs-5"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="bi bi-instagram fs-5"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="bi bi-youtube fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h6>Liên kết</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+                        <li class="mb-2"><a asp-controller="Product" asp-action="Index">Xe có sẵn</a></li>
+                        <li class="mb-2"><a asp-controller="Home" asp-action="About">Giới thiệu</a></li>
+                        <li class="mb-2"><a asp-controller="Home" asp-action="Contact">Liên hệ</a></li>
+                        <li class="mb-2"><a asp-controller="Home" asp-action="Privacy">Chính sách bảo mật</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h6>Hỗ trợ</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="#">Chính sách đổi trả</a></li>
+                        <li class="mb-2"><a href="#">Bảo hành &amp; bảo dưỡng</a></li>
+                        <li class="mb-2"><a href="#">Hướng dẫn mua xe máy</a></li>
+                        <li class="mb-2"><a href="#">Phương thức thanh toán</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h6>Liên hệ</h6>
+                    <ul class="list-unstyled small text-muted">
+                        <li class="mb-2"><i class="bi bi-geo-alt me-2"></i>350 Điện Biên Phủ, Q.3, TP. Hồ Chí Minh</li>
+                        <li class="mb-2"><i class="bi bi-telephone me-2"></i>0123.456.789</li>
+                        <li class="mb-2"><i class="bi bi-envelope me-2"></i>hello@@tdlmoto.vn</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; @DateTime.Now.Year <strong>TDL MOTO</strong>. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <nav class="shop-mobile-nav d-lg-none" aria-label="Điều hướng nhanh">
+        <a class="shop-mobile-nav__link @(currentController == "Home" && currentAction == "Index" ? "is-active" : "")" asp-controller="Home" asp-action="Index">
+            <span class="shop-mobile-nav__wrap"><i class="bi bi-house-door-fill"></i></span>
+            Trang chủ
+        </a>
+        <a class="shop-mobile-nav__link @(currentController == "Product" ? "is-active" : "")" asp-controller="Product" asp-action="Index">
+            <span class="shop-mobile-nav__wrap"><i class="bi bi-grid-1x2-fill"></i></span>
+            Xe
+        </a>
+        <a class="shop-mobile-nav__link @(currentController == "Cart" ? "is-active" : "")" asp-controller="Cart" asp-action="Index">
+            <span class="shop-mobile-nav__wrap position-relative">
+                <i class="bi bi-cart3"></i>
+                @if (cartCount > 0)
+                {
+                    <span class="shop-mobile-nav__badge">@cartCount</span>
+                }
+            </span>
+            Giỏ
+        </a>
+        <a class="shop-mobile-nav__link @(currentController == "Account" ? "is-active" : "")" asp-controller="Account" asp-action="@(isAuthenticated ? "Profile" : "Login")">
+            <span class="shop-mobile-nav__wrap"><i class="bi bi-person-fill"></i></span>
+            Tài khoản
+        </a>
+    </nav>
+
+    <button type="button" id="backToTop" class="back-to-top" aria-label="Về đầu trang" title="Về đầu trang">
+        <span class="back-to-top__pulse" aria-hidden="true"></span>
+        <span class="back-to-top__glow" aria-hidden="true"></span>
+        <i class="bi bi-arrow-up back-to-top__icon" aria-hidden="true"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,81 @@
+@{
+    ViewData["Title"] = "Giới thiệu";
+}
+
+<div class="about-page">
+    <div class="about-band">
+        <div class="container py-5">
+            <nav aria-label="breadcrumb" class="mb-3">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Giới thiệu</li>
+                </ol>
+            </nav>
+            <div class="row align-items-center g-4">
+                <div class="col-lg-7 reveal">
+                    <p class="about-band__eyebrow text-uppercase small fw-bold mb-2">Về chúng tôi</p>
+                    <h1 class="about-band__title display-6 fw-bold mb-3 font-serif">TDL MOTO — showroom xe máy trực tuyến</h1>
+                    <p class="about-band__lead text-muted mb-0">Chúng tôi kết nối người mua với những chiếc xe đã qua kiểm định, hồ sơ minh bạch — từ sedan gia đình đến SUV đa dụng và xe điện thế hệ mới.</p>
+                </div>
+                <div class="col-lg-5 d-none d-lg-flex justify-content-lg-end reveal">
+                    <div class="about-band__badge-icon" aria-hidden="true"><i class="bi bi-truck-front-fill"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container py-5">
+        <div class="row g-4 g-lg-5 align-items-start">
+            <div class="col-lg-7 reveal">
+                <h2 class="h4 fw-bold mb-3">Câu chuyện</h2>
+                <p class="text-muted"><strong class="text-white">TDL MOTO</strong> ra đời từ nhu cầu mua bán xe máy rõ ràng — đội ngũ của chúng tôi rà soát nguồn gốc, kiểm tra máy &amp; khung và đồng hành thủ tục sang tên.</p>
+                <p class="text-muted mb-0">Mỗi xe lên sàn đều có mô tả trung thực, ảnh thực tế và lộ trình tư vấn tài chính phù hợp — không ép mua, ưu tiên trải nghiệm lái thử khi khách hàng cần.</p>
+            </div>
+            <div class="col-lg-5 reveal">
+                <div class="about-values card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <h3 class="h6 text-uppercase text-muted mb-3">Giá trị cốt lõi</h3>
+                        <ul class="list-unstyled mb-0 about-values__list">
+                            <li class="d-flex gap-3 mb-3">
+                                <span class="about-values__dot"><i class="bi bi-patch-check"></i></span>
+                                <span><strong class="d-block">Minh bạch</strong><span class="text-muted small">Báo cáo kiểm định, số km và lịch bảo dưỡng rõ ràng.</span></span>
+                            </li>
+                            <li class="d-flex gap-3 mb-3">
+                                <span class="about-values__dot"><i class="bi bi-truck"></i></span>
+                                <span><strong class="d-block">Giao xe an toàn</strong><span class="text-muted small">Vận chuyển có bảo hiểm — bàn giao biên nhận đầy đủ.</span></span>
+                            </li>
+                            <li class="d-flex gap-3">
+                                <span class="about-values__dot"><i class="bi bi-chat-dots"></i></span>
+                                <span><strong class="d-block">Tư vấn tài chính</strong><span class="text-muted small">Trả góp, bảo hiểm — gợi ý theo khả năng và nhu cầu.</span></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-3 mt-2 reveal-stagger">
+            <div class="col-md-4">
+                <div class="about-pillar text-center p-4 rounded-4 h-100">
+                    <i class="bi bi-grid-3x3-gap fs-2 text-primary mb-2 d-block"></i>
+                    <h3 class="h6 fw-bold">Đa phân khúc</h3>
+                    <p class="text-muted small mb-0">Sedan, SUV, MPV, hybrid &amp; điện — cập nhật kho thường xuyên.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="about-pillar text-center p-4 rounded-4 h-100">
+                    <i class="bi bi-speedometer2 fs-2 text-primary mb-2 d-block"></i>
+                    <h3 class="h6 fw-bold">Theo dõi đơn</h3>
+                    <p class="text-muted small mb-0">Trạng thái cọc, giao xe và hỗ trợ sau bán minh bạch.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="about-pillar text-center p-4 rounded-4 h-100">
+                    <i class="bi bi-heart fs-2 text-primary mb-2 d-block"></i>
+                    <h3 class="h6 fw-bold">Đồng hành</h3>
+                    <p class="text-muted small mb-0">TDL MOTO — đối tác trên hành trình của bạn.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

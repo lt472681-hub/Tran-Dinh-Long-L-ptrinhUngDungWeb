@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 48" width="320" height="48" role="img" aria-label="NTV CAR">
+  <defs>
+    <linearGradient id="ntvMetal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#94a3b8"/>
+      <stop offset="50%" stop-color="#cbd5e1"/>
+      <stop offset="100%" stop-color="#64748b"/>
+    </linearGradient>
+    <linearGradient id="ntvMono" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#404040"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="38" width="320" height="3" fill="url(#ntvMetal)" opacity="0.85"/>
+  <ellipse cx="24" cy="38" rx="18" ry="3" fill="#0f172a" opacity="0.35"/>
+  <path d="M4 28 L12 22 L28 20 L44 22 L52 28 L52 34 L48 36 L8 36 L4 34 Z" fill="#0f172a"/>
+  <path d="M14 22 L38 22 L42 26 L10 26 Z" fill="#1e293b"/>
+  <circle cx="14" cy="34" r="3.5" fill="#334155" stroke="#64748b" stroke-width="0.8"/>
+  <circle cx="42" cy="34" r="3.5" fill="#334155" stroke="#64748b" stroke-width="0.8"/>
+  <rect x="18" y="24" width="20" height="6" rx="1" fill="url(#ntvMono)" opacity="0.9"/>
+  <text x="64" y="22" font-family="system-ui,Segoe UI,sans-serif" font-size="17" font-weight="800" fill="#0f172a" letter-spacing="0.12em">NTV</text>
+  <text x="64" y="40" font-family="system-ui,Segoe UI,sans-serif" font-size="17" font-weight="800" fill="url(#ntvMono)" letter-spacing="0.18em">CAR</text>
+  <text x="138" y="32" font-family="system-ui,Segoe UI,sans-serif" font-size="9" font-weight="600" fill="#64748b" letter-spacing="0.06em">Showroom</text>
+  <line x1="128" y1="8" x2="128" y2="42" stroke="#cbd5e1" stroke-width="1.2"/>
+</svg>

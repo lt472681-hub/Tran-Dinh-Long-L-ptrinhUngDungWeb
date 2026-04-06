@@ -1,0 +1,70 @@
+@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TDL MOTO Admin — Đăng nhập</title>
+    <link rel="icon" type="image/svg+xml" href="~/brand/logo-tdl-moto.svg" asp-append-version="true" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/bootstrap/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="~/lib/adminlte/css/adminlte.css" />
+    <link rel="stylesheet" href="@Url.Content("~/css/site.css")" asp-append-version="true" />
+</head>
+<body class="login-page login-page--tdl-moto">
+    <div class="login-tdl-bg" aria-hidden="true">
+        <div class="login-tdl-bg__mesh"></div>
+        <div class="login-tdl-bg__glow login-tdl-bg__glow--1"></div>
+        <div class="login-tdl-bg__glow login-tdl-bg__glow--2"></div>
+    </div>
+
+    <div class="login-tdl-center">
+        <div class="login-tdl-card">
+            <div class="text-center mb-4">
+                <a href="~/">
+                    <img src="~/brand/logo-tdl-moto.svg" alt="TDL MOTO" width="260" height="40" class="mb-3" asp-append-version="true" />
+                </a>
+                <h1 class="h4 fw-bold mb-1" style="color:#f8fafc; letter-spacing:.02em;">Đăng nhập quản trị</h1>
+                <p class="small mb-0" style="color:rgba(148,163,184,.95);">Hệ thống nội bộ TDL MOTO — quản lý kho xe &amp; đơn hàng</p>
+            </div>
+
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger border-0 py-2 small mb-3">
+                    @Html.ValidationSummary(true)
+                </div>
+            }
+
+            <form asp-action="Login" asp-controller="Account" method="post" class="login-tdl-form">
+                <div class="mb-3">
+                    <label class="form-label small fw-semibold" style="color:#cbd5e1;">Email</label>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text login-tdl-ig"><i class="bi bi-envelope"></i></span>
+                        <input type="email" name="email" class="form-control login-tdl-input" placeholder="you@company.com" autocomplete="username" autofocus />
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label small fw-semibold" style="color:#cbd5e1;">Mật khẩu</label>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text login-tdl-ig"><i class="bi bi-lock-fill"></i></span>
+                        <input type="password" name="password" class="form-control login-tdl-input" placeholder="••••••••" autocomplete="current-password" />
+                    </div>
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-lg login-tdl-submit text-white fw-semibold">
+                        <i class="bi bi-box-arrow-in-right me-2"></i>Đăng nhập
+                    </button>
+                </div>
+            </form>
+        </div>
+        <p class="text-center small mt-4 mb-0" style="color:rgba(148,163,184,.75);">© @DateTime.Now.Year TDL MOTO · Admin</p>
+    </div>
+
+    <script src="~/lib/bootstrap/bootstrap.bundle.min.js"></script>
+</body>
+</html>

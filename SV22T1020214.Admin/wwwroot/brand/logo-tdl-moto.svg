@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 48" role="img" aria-labelledby="title">
+  <title id="title">TDL MOTO</title>
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff8c42"/>
+      <stop offset="100%" stop-color="#e85d04"/>
+    </linearGradient>
+  </defs>
+  <!-- Silhouette moto -->
+  <g transform="translate(4,8) scale(0.9)">
+    <path fill="url(#g)" d="M4 22c0-6 5-11 12-11h6l3-5h10l4 6h8c4 0 7 3 7 7v2h-6l-2-4H24l-3 5h-5c-3 0-5 2-5 5s2 5 5 5h22l4-8h10l-2 6H29c-8 0-14-5-16-12l-9 4v6H4V22zm52 2l6-10h14l8 14h-12l-3-6h-8l-5 10h-10l10-18h10l-10 10z"/>
+    <circle cx="18" cy="30" r="5" fill="#1e293b"/>
+    <circle cx="58" cy="30" r="5" fill="#1e293b"/>
+  </g>
+  <text x="88" y="34" font-family="Bebas Neue, Oswald, Impact, sans-serif" font-size="28" font-weight="700" fill="#f8fafc" letter-spacing="0.06em">TDL</text>
+  <text x="158" y="34" font-family="Bebas Neue, Oswald, Impact, sans-serif" font-size="28" font-weight="700" fill="url(#g)" letter-spacing="0.12em">MOTO</text>
+  <rect x="88" y="38" width="178" height="3" rx="1.5" fill="url(#g)" opacity="0.85"/>
+</svg>
